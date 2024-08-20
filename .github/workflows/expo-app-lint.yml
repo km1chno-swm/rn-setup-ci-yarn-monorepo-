@@ -1,0 +1,20 @@
+name: Check ESLint
+
+on:
+  pull_request: 
+    paths:
+      - apps/expo-app/**
+ 
+jobs:
+   eslint:
+      name: ESLint
+      runs-on: ubuntu-latest
+      steps:
+         - name: 🏗 Setup repo
+           uses: actions/checkout@v4
+
+         - name: 📦 Install dependencies
+           run: yarn
+
+         - name: 🤓 Run ESLint
+           run: yarn --cwd apps/expo-app lint
