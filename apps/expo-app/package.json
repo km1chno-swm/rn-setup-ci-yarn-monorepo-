@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "main": "expo-router/entry",
   "scripts": {
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "start": "expo start",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" && prettier -c \"**/*.{js,jsx,ts,tsx,json}\"",
     "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier \"**/*.{js,jsx,ts,tsx,json}\" --write",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "fingerprint:android": "npx expo-updates fingerprint:generate --platform android | jq -r '.hash' | xargs -n 1 echo 'fingerprint:'",
+    "fingerprint:ios": "npx expo-updates fingerprint:generate --platform ios | jq -r '.hash' | xargs -n 1 echo 'fingerprint:'",
+    "build:debug:android": "npx expo prebuild --yarn && cd android && ./gradlew assembleDebug -DtestBuildType=debug -Dorg.gradle.jvmargs=-Xmx4g",
+    "build:debug:ios": "npx expo prebuild --yarn && xcodebuild ONLY_ACTIVE_ARCH=YES -workspace ios/expoapp.xcworkspace -UseNewBuildSystem=YES -scheme expoapp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build -quiet",
+    "maestro:test": "maestro test --debug-output maestro-debug-output .maestro"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
