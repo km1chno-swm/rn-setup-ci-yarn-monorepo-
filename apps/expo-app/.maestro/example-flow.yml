@@ -3,6 +3,6 @@
 appId: com.kmichno.expoapp
 ---
 - launchApp
-- extendedWaitUntil: 
-    visible: "Welcome to React Native"
+- extendedWaitUntil:
+    visible: 'Show Details'
     timeout: 120000
