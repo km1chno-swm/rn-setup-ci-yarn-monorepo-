@@ -1,0 +1,26 @@
+name: Run Jest tests
+
+on:
+  pull_request:
+    paths:
+      - apps/expo-app/**
+
+jobs:
+  jest:
+    name: Jest
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v4
+
+      - name: 🌿 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: "apps/expo-app/.nvmrc"
+          cache: "yarn"
+
+      - name: 📦 Install dependencies
+        run: yarn install --immutable
+
+      - name: 🎭 Run Jest
+        run: yarn --cwd apps/expo-app test

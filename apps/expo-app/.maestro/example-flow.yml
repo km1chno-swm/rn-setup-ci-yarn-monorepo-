@@ -1,0 +1,8 @@
+# example-flow.yaml
+
+appId: com.kmichno.expoapp
+---
+- launchApp
+- extendedWaitUntil:
+    visible: 'Show Details'
+    timeout: 60000
